@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<%- include('../partials/head.ejs') %>
+</head>
+
+<body>
+    <h1>Hello mfs 111</h1>
+    <br><br>
+    <a href="/reg">Register</a>
+    <br>
+    <a href="/login">Login</a>
+    <br><br><br>
+
+<%- include('../partials/foot.ejs') %>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+
+    <link rel="stylesheet" href="/css/adminintros.css">
+</head>
+<body>
+
+    <h1>Hello admin,</h1>
+    <form action="/addp" method="">
+    <button type="submit">ADD PROJECTS TO BLOCKCHAIN</button>
+  </form>
+    <div class = "title" style="text-align: center;">
+        <h1>ALL Projects</h1>
+      </div>
+    <section class = "blog" id = "blog">
+        
+        <div class = "container">
+
+          
+            <!-- item -->
+            <% if(allp.length!=0) { %>
+              <% for(var i=0;i<allp.length;i++) { %>
+            <div class = "blog-content">
+            <div class = "blog-item">
+              <div class = "blog-img">
+                <img src = "<%- allp[i].url %>" alt = "">
+                
+              </div>
+              <div class = "blog-text">
+                <span>Ends On <%= allp[i].edate %></span>
+                <h2><%= allp[i].name %></h2>
+                <p>Cost of Project: INR <%= allp[i].budget %> crores</p>
+  
+                  <p>Description: <%= allp[i].desc %></p>
+                <a href = "#">Read More</a>
+                <form style="display: none;" id="form<%=i+1%>" action="/getvote" method="post">
+                  <input type="text" value="<%= allp[i].id %>" name="pid">
+                </form>
+                <button class="btn" form="form<%=i+1%>" type="submit">Get Vote Details</button>
+  
+              </div>
+            </div>
+        </div>
+  
+            <!-- end of item -->
+            <% } %>
+          <% } else{ %>
+           <h1>NO project to display</h1>
+            <% } %>
+          
+        </div>
+      </section>
+      
+</body>
+</html>

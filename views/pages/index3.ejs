@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel ="icon" type="/img/favicon.png" href="/img/favicon.png">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font awesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/style3.css">
+  </head>
+  <body>
+
+      
+    <!-- header -->
+    <header>
+      <nav class = "navbar">
+        <div class = "container">
+          <a href = "#" class = "navbar-brand">J A</a>
+          <div class = "navbar-nav">
+            <a href = "">Home</a>
+            <a href = "">FAQ</a>
+            <a href = "">BLOG</a>
+            <a href = "">SUPPORT</a>
+          </div>
+        </div>
+      </nav>
+      <div class = "banner">
+        <div class = "container">
+          <h1 class = "banner-title">
+            <span>JAN</span> ADHIKAR
+          </h1>
+          <p>Search For A Specific Project aroud your area</p>
+          <% if(login==""){ %>
+            <h1>Please Login To See The Projects</h1>
+            <a href="/login"><button id="logbtn">LogIn</button></a>
+
+            <% }else{ %>
+              <h1>Welcome <%= login %></h1>
+
+              <% } %>
+
+          
+          <!-- <form>
+            <input type = "text" class = "search-input" placeholder="Find Your Project....">
+            <button type = "submit" class = "search-btn">
+              <i class = "fas fa-search"></i>
+            </button>
+          </form> -->
+        </div>
+      </div>
+    </header>
+    <!-- end of header -->
+    <% if(login==""){ %>
+
+      <% }else{ %>
+      
+    <!-- blog -->
+    <section class = "blog" id = "blog">
+      <div class = "container">
+        <div class = "title">
+          <h2>Completed Projects</h2>
+          <p>Vote For Your Projects</p>
+        </div>
+        <div class = "blog-content">
+          <!-- item -->
+          <% if(selpinfo.length!=0) { %>
+            <% for(var j=0;j<selpinfo.length;j++) { %>
+          <div class = "blog-item">
+            <div class = "blog-img">
+              <img src = "<%- selpinfo[j].url %>" alt = "">
+              <span></span>
+            </div>
+            <div class = "blog-text">
+              <span>Ends On <%= selpinfo[j].edate %></span>
+              <h2><%= selpinfo[j].name %></h2>
+              <p>Cost of Project: INR <%= selpinfo[j].budget %> crores</p>
+
+                <p>Description: <%= selpinfo[j].desc %></p>
+                <button onclick="location.href='C:\Users\Sudeep M A\Downloads\Construction-monitoring.pdf';"><a>READ MORE</a></button>
+              <form style="display: none;" id="form<%= j+100 %>" action="/getvote" method="post">
+                <input type="text" value="<%= selpinfo[j].id %>" name="pid">
+              </form>
+              <button class="btn" form="form<%= j+100 %>" type="submit">View Results</button>
+            </div>
+          </div>
+
+          <!-- end of item -->
+          <% } %>
+        <% } else{ %>
+         <h1>NO project to display</h1>
+          <% } %>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- blog -->
+    <section class = "blog" id = "blog">
+      <div class = "container">
+        <div class = "title">
+          <h2>Latest Projects</h2>
+          <p>Vote For Your Projects</p>
+        </div>
+        <div class = "blog-content">
+          <!-- item -->
+          <% if(livepinfo.length!=0) { %>
+            <% for(var i=0;i<livepinfo.length;i++) { %>
+          <div class = "blog-item">
+            <div class = "blog-img">
+              <img src = "<%- livepinfo[i].url %>" alt = "">
+              <span></span>
+            </div>
+            <div class = "blog-text">
+              <span>Ends On <%= livepinfo[i].edate %></span>
+              <h2><%= livepinfo[i].name %></h2>
+              <p>Cost of Project: INR <%= livepinfo[i].budget %> crores</p>
+
+                <p>Description: <%= livepinfo[i].desc %></p>
+              <a href = "#">Read More</a>
+              <form style="display: none;" id="form<%= i+1 %>" action="/vote" method="post">
+                <input type="text" value="<%= livepinfo[i].id %>" name="pid">
+                <input type="text" value="<%= anum %>" name="aid">
+              </form>
+              <button class="btn" form="form<%= i+1 %>" type="submit" name="type" value="up">Up Vote</button>
+              <button class="btn" form="form<%= i+1 %>" type="submit" name="type" value="down">Down Vote</button>
+
+            </div>
+          </div>
+
+          <!-- end of item -->
+          <% } %>
+        <% } else{ %>
+         <h1>NO project to display</h1>
+          <% } %>
+        </div>
+      </div>
+    </section>
+    
+    
+
+
+    <!-- about -->
+    <section class = "about" id = "about">
+      <div class = "container">
+        <div class = "about-content">
+          <div>
+            <img src = "/img/about-bg.jpg" alt = "">
+          </div>
+          <div class = "about-text">
+            <div class = "title">
+              <h2>JAN ADHIKAR</h2>
+              <p>Voting For Your Future</p>
+            </div>
+            <p>The communal franchise is an online voting system designed to facilitate democratic decision-making within small communities. This system allows individuals to exercise their suffrage, or right to vote, in a convenient and efficient manner, enabling them to express their preferences and have a say in the governance of their community. The communal franchise utilizes electronic voting platforms, which allow for the quick and secure casting of ballots.
+            
+            By promoting civic participation and enabling small communities to self-govern, the communal franchise can promote the common good and enhance the vitality of the community.</p>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <!-- end of about -->
+
+    <!-- footer -->
+    <footer>
+      <div class = "social-links">
+        <a href = "#"><i class = "fab fa-facebook-f"></i></a>
+        <a href = "#"><i class = "fab fa-twitter"></i></a>
+        <a href = "#"><i class = "fab fa-instagram"></i></a>
+        <a href = "#"><i class = "fab fa-pinterest"></i></a>
+      </div>
+      <span>JAN ADHIKAR</span>
+    </footer>
+    <!-- end of footer -->
+    
+    
+  </body>
+</html>
+
+<% } %>
